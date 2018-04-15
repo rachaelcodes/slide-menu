@@ -1,57 +1,49 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://github.com/vuejs/vue-cli/tree/dev/docs" target="_blank">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org/en/essentials/getting-started.html" target="_blank">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org/en/intro.html" target="_blank">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org/en" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+   <div v-for="fsh in fishies" :key="fsh.key" class="fish" :id="fsh.key">
+     <img class="fish-img" :src="fsh.src" :alt="fsh.key"/>
+     <div class="fish-text">
+       <p>Photo by 
+         <a :href="fsh.reference">{{fsh.photographer}}</a> on
+         <a href="https://unsplash.com/search/photos/fish?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+       </p>
+     </div>     
+   </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data: function () {
+    return {
+      fishies: [
+        {key: 'jellyfish', src:'jelly.jpg', photographer: 'naomi tamar', reference: 'https://unsplash.com/photos/u1iIIQwtRqU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'},
+        {key: 'ray', src:'ray.jpg', photographer: 'Alex Suprun', reference: 'https://unsplash.com/photos/yF8RUx0i7pA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'},
+        {key: 'shark', src:'shark.jpg', photographer: 'Matt Helbig', reference: 'https://unsplash.com/photos/wdL8UywQtWU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'},
+        {key: 'yellow', src:'yellow.jpg', photographer: 'David Clode', reference: 'https://unsplash.com/photos/dzQXyjruzVg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'},
+        {key: 'zebra', src:'zebra.jpg', photographer: 'Alexandra Baeva', reference: 'https://unsplash.com/photos/PuxXygVWWkU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'},
+      ]
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  .fish {
+    max-width: 100%;
+    position: relative;
+  }
+  .fish-img{
+    max-width: 100%;
+  }
+  .fish-text{
+    background-color: white;
+    display: inline-block;
+    padding: 0 .5rem;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+  }
 </style>
